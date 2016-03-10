@@ -1,0 +1,113 @@
+@import "variables.less";
+// button
+// --------------------------------------------
+@btn-color: #fff;
+@btn-bgcolor: #7bd2ff;
+@btn-bgcolor-hover: #58b4e6;
+@btn-font-size:14px;
+@btn-primary-bgcolor:#82c7ec;
+.btn-border(@color:#ccc) {
+	border: 1px solid @color;
+}
+
+//button按钮生成工厂
+.btn-css(@bgcolor:@btn-primary-bgcolor) {
+  color: @btn-color;
+  .btn-border(darken(@bgcolor,5%));
+
+  &.hover,&:hover {
+  	color:#fff;
+  	background-color: darken(@bgcolor, 10%)
+  }
+
+  &:active,&.active {
+    color: #fff;
+    background-color: darken(@bgcolor, 15%)
+  }
+}
+
+//具体样式
+//---------------------------------------------
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: @btn-font-size;
+  height:34px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: top;
+  cursor: pointer;
+  background-color: @btn-bgcolor;
+  border: 1px solid #ccc;
+  .border-radius(5px);
+
+  // Active & filled button styles
+  &:active,
+  &.active {
+    color: inherit; // Overriding the gloabl style for all anchors.
+    background-color: #ccc;
+  }
+
+  // Disabled styles & filled button active styles
+  &:disabled,
+  &.disabled {
+    opacity: .6;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+  }
+}
+
+.btn-primary {
+  .btn-css(@btn-primary-bgcolor);
+}
+
+.btn-success {
+   .btn-css(@bgcolor-success);
+}
+
+.btn-info {
+ 	.btn-css(@bgcolor-info);
+}
+
+.btn-warning {
+ 	.btn-css(@bgcolor-warning);
+}
+
+.btn-danger {
+ 	.btn-css(@bgcolor-danger);
+}
+
+//icon btn
+.btn-icon {
+    position: relative;
+    font-size:23px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    color: @btn-bgcolor;
+    // Active & filled button styles
+    &:hover, &.hover {
+        color: darken(@btn-primary-bgcolor, 10%)
+    }
+}
+.btn-icon-small {
+  color:@border-color;
+  &:hover {
+     color: darken(@btn-primary-bgcolor, 10%)
+  }
+}
+// Block level buttons (full width buttons)
+.btn-block {
+  display: block;
+  width: 100%;
+  height:51px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.btn-lg{
+  width:139px;
+}

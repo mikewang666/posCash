@@ -1,0 +1,279 @@
+
+@import "variables.less";
+
+@input-bg:#fff;
+@input-color:#ccc;
+@input-border-color:#c0c8c8;
+@input-height:30px;
+@input-border-focus:#66afe9;
+@input-placeholder-color:#999;
+@input-shadow-color: rgba(102, 175, 233, 0.6);
+.input-focus(@color:@input-shadow-color) {
+	box-shadow: 0 0 8px @color;
+}
+
+@validate-border-color:red;
+
+
+select,
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="color"] {
+  width: 100%;
+  height: @input-height;
+  -webkit-appearance: none;
+  padding: 0 5px;
+  line-height: @input-height;
+  background-color: @input-bg;
+  border:@border;
+  border-radius: 3px;
+  outline: none;
+  &:focus {
+	.input-focus();
+  }
+}
+//全局placeholder颜色
+.placeholder {
+  color: #999;
+}
+
+textarea{
+	height:auto;
+	line-height: 24px;
+	word-break:break-all;
+  margin-bottom: -3px;
+	&:focus {
+		.input-focus();
+	}
+}
+
+//单选 复选按钮
+.checkbox-inline{
+	margin-right:20px;
+	cursor: pointer;
+	padding-left:20px;
+	position: relative;
+	vertical-align: middle;
+	& > input[type="checkbox"],input[type="radio"] {//
+		position: absolute;
+		margin-left: -20px;
+		top:2px;
+	}
+}
+
+input[type="checkbox"],input[type="radio"] {
+	margin-right:5px;
+	vertical-align: middle;
+}
+
+.input-lg {
+  height:33px!important;
+  line-height: 33px!important;
+}
+
+//checkbox css
+.checkgroup {
+		& > input{display: none;};
+		& > input + label {
+			background-color:#fafafa;
+			border:1px solid #cacece;
+			border-radius:3px;
+			box-shadow:0 1px 2px rgba(0, 0, 0, 0.05), 0 -15px 10px -12px rgba(0, 0, 0, 0.05) inset;
+			display:inline-block;
+			padding:9px;
+			position:relative;
+			vertical-align: middle;
+			margin-right: 5px;
+      cursor: pointer;
+      line-height: 22px!important;
+		}
+		& > input:checked + label::after{
+			 color:#99a1a7;
+			 content:"✔";
+			 font-size:14px;
+			 left:3px;
+			 position:absolute;
+			 top:-1px;
+			 left:4px;
+		}
+}
+//radiobox css
+.radiogroup {
+		& > input{display: none;};
+		& > input + label {
+			background-color:#fafafa;
+			border:1px solid #cacece;
+			box-shadow:0 1px 2px rgba(0, 0, 0, 0.05), 0 -15px 10px -12px rgba(0, 0, 0, 0.05) inset;
+			display:inline-block;
+			padding:9px;
+			position:relative;
+			border-radius: 50px;
+			margin-right: 5px;
+			vertical-align: middle;
+      cursor: pointer;
+		}
+		& > input:checked + label::after{
+			background:#99a1a7;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
+			border-radius: 50px;
+			 color:#99a1a7;
+			 content:" ";
+			 font-size:14px;
+			 left:3px;
+			 position:absolute;
+			 top:3px;
+			 height:12px;
+			 width: 12px;
+
+		}
+}
+
+//单行显示
+.form-group {
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+	& > input {width:auto!important;}
+}
+
+//select css
+.btn-select{
+    width: 240px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    *display: inline;
+    *float: left;
+    *margin-right: 10px;
+    background: @input-bg;
+    border-radius: 3px;
+    border: 1px solid @input-border-color;
+
+  .select-button{
+    width: 100%;
+    height: 25px;
+    border: none;
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+    padding: 0 26px 0 10px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+  }
+  .select-down{
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    height:0;
+    width:0;
+    overflow: hidden;
+    font-size: 0;
+    border-color: #333 transparent transparent transparent;
+    border-style: solid;
+    border-width: 6px;
+  }
+   .select-list{
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 0 3px #ddd;
+    border-radius: 3px;
+    display: none;
+    z-index: 2;
+    position: absolute;
+    left: -1px;
+    top: 26px;
+    overflow: hidden;
+  }
+  .select-list ul{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 23px;
+    max-height: 240px;
+  }
+  .select-list ul li{
+    width: auto;
+    height: 25px;
+    padding-left: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+  }
+  .select-list ul li.selected,
+  .select-list ul li:hover{
+    background: @bgcolor-place;
+  }
+}
+
+//表单验证提示
+.validate-err {
+   border-color:@bgcolor-danger!important;
+}
+
+
+
+// =======================
+
+// 海涛(success99@126.com)
+
+//========================
+
+//城市选择
+.area-wrap {
+  display: inline-block;
+  position: relative;
+  input {
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+  }
+  .area-list {
+    position: absolute;
+    left: 0;
+    display: none;
+    width: 100%;
+    max-height: 300px;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin: 0;
+    background-color: #fff;
+    overflow: auto;
+    z-index: 2;
+    clear: both;
+    border: 1px solid @input-border-color;
+    li {
+      float: left;
+      padding: 3px 5px;
+      margin-bottom: 10px;
+      margin-right: 15px;
+      cursor: pointer;
+      &:hover {
+        color: red;
+      }
+    }
+    .red {
+      color: red;
+    }
+  }
+}

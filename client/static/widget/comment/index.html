@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="comment.css">
+<div class="comment">
+  <div class="comment-wrap">
+    <!-- 评论在这里 -->
+  </div>
+  <!-- 简洁翻页在这里 -->
+  <!-- 评论框 -->
+  <div class="up-comment clearfix">
+    <img id="comment-avatar" src="/img/avatar.jpg" alt="">
+    <textarea name="comment-textarea" id="comment-textarea" placeholder="禁止：反动，涉黄，暴力言论。如有违规，立刻删除会员身份本站概不负责！"></textarea>
+    <p id="comment-textarea-tip"></p>
+    <button class="btn btn-primary btn-block publish-comment">确定发表</button>
+  </div>
+  <input type="hidden" name="csrf" id="csrf" val="123456789">
+</div>
+<script type="text/javascript">
+    var comment = require('comment/comment');
+    var mcCmt = new comment();
+    mcCmt.init();
+    mcCmt.page();
+</script>
+

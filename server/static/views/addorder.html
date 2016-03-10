@@ -1,0 +1,219 @@
+<%- include /include/head.html %>
+ <div class="m-tabletitle">
+
+        收货人：<input id="shouhuoren"/>&nbsp;&nbsp;地区：<input id="area" />&nbsp;&nbsp;物流：<input id="express"/>&nbsp;&nbsp;电话：<input id="phone"/>&nbsp;&nbsp;日期：<input id="time"/><br/>
+       说明：<input  id="des" style="width:500px;"/>&nbsp;&nbsp;订单编号：<span id="orderid"><%= objid%></span>&nbsp;&nbsp;合计金额：<span id="jine" style="font-weight: 900;color:red;font-size:20px;">0</span>&nbsp;&nbsp;<button onclick="saveOrder(0);" >保存订单</button><button onclick="saveOrder(1);" >保存并新增订单</button>
+
+ </div>
+ <table id="user" class="m-table">
+
+ </table>
+<%- include /include/footermenu.html%>
+ <ul id="youmenu" class="m-rmenu" tabindex="1" >
+     <li  onclick="zengSong(this);">赠品</li>
+     <li  onclick="del(this);">删除</li>
+ </ul>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/public/js/witch.ui.datatable.js"></script>
+<script src="/public/js/witch.ui.validate.js"></script>
+<script src="/public/js/witch.ui.autoComplete.js"></script>
+<script src="/public/js/witch.ui.datatable.order.js"></script>
+<script src="/public/js/common.js"></script>
+<script>
+    $('#shouhuoren').witchAuto({
+        class: 'f-auto',
+        ajaxUrl: '/order/addorder/pageuser',
+        col:'user',
+        cfun: function(uname) {
+            $.ajax({
+               type: 'post',
+                url: '/order/addorder/getuser',
+                data:'name=' + uname,
+                dataType: 'json',
+                success: function(msg) {
+                    $('#shouhuoren').data('uid',msg.id);
+                    $('#area').val(msg.area);
+                    $('#express').val(msg.express);
+                    if(msg.phone != '') {
+                        $('#phone').val(msg.phone);
+                    }
+                    else {
+                        $('#phone').val(msg.telphone);
+                    }
+                }
+            });
+        }
+    });
+    var table=new witchDataTableOrder('#user',{
+        thead: [
+            {
+                name: '行号',
+                edit: '',
+                width: '30px'
+            },
+            {
+                name: '商品名称',
+                width: '300px',
+                edit: 'edit editdata',
+                validate: {
+                    must:true
+                },
+                ajaxUrl: '/order/addorder/pagegoods',
+                cfun: function(tval, obj) {
+                    $.ajax({
+                        type: 'post',
+                        url: '/order/addorder/getgood',
+                        data: 'val=' + tval + '&uid=' + $('#shouhuoren').data('uid'),
+                        dataType:'json',
+                        success: function(msg) {
+                            if(msg != '') {
+                                obj.data('gd',msg);
+                                var tds = obj.parent().find('td');
+                                $(tds[2]).html(msg[0].norms);
+                                $(tds[3]).text(msg[0].unit);
+                                $(tds[4]).text("0");
+                                $(tds[5]).text(msg[0].sale);
+                                $(tds[6]).text("0");
+                            }
+                        }
+                    });
+                }
+            },
+            {
+                name: '规格',
+                width: '100px',
+                edit: 'edit',
+                col: 'norms',
+                validate: {
+                    must:false
+                },
+                jsonData: '1',
+                cfun: function(tval,obj) {
+                    var oparent = obj.parent();
+                    var tds = oparent.find('td');
+                    if($.trim($(tds[7]).html()) == '赠品') {
+                        return;
+                    }
+                    var gd = oparent.find('.editdata').data('gd');
+                    var danwei = $.trim($(tds[3]).html());
+                    for(var i=0; i<gd.length; i++) {
+                        if(gd[i].norms == tval) {
+                            if(gd[i].unit == danwei) {
+                                $(tds[5]).html(gd[i].sale);
+                            }
+                            else {
+                                $(tds[5]).html(gd[i].assistSale);
+                            }
+                            updatePrice($(tds[3]));
+                            break;
+                        }
+                    }
+                }
+
+            },
+            {
+                name: '单位',
+                width: '100px',
+                edit: 'edit',
+                validate: {
+                    must:false
+                },
+                col: 'unit,assist',
+                jsonData: '1',
+                cfun: function(tval,obj) {
+                    var oparent = obj.parent();
+                    var tds = oparent.find('td');
+                    if($.trim($(tds[7]).html()) == '赠品') {
+                        return;
+                    }
+                    var gd = oparent.find('.editdata').data('gd');
+                    var guige = $.trim($(tds[2]).html());
+                    for(var i=0; i<gd.length; i++) {
+                        if(gd[i].norms == guige) {
+                            if(gd[i].unit == tval) {
+                                $(tds[5]).html(gd[i].sale);
+                            }
+                            else if(gd[i].assistSale) {
+                                $(tds[5]).html(gd[i].assistSale);
+                            }
+                            else {
+                                continue;
+                            }
+                            updatePrice($(tds[3]));
+                            break;
+                        }
+                    }
+                }
+            },
+            {
+                name: '数量',
+                width: '100px',
+                edit: 'edit number',
+                validate: {
+                    must: false
+                }
+            },
+            {
+                name: '单价',
+                width: '100px',
+                edit: 'edit price',
+                validate: {
+                    must: false
+                }
+            },
+            {
+                name: "金额",
+                width: '100px',
+                edit: 'count',
+                validate: {
+                    must: false
+                }
+            },
+            {
+                name: "状态",
+                width: '100px',
+                edit: '',
+                validate: {
+                    must: false
+                }
+            }
+        ],
+        data:{
+            url:'/customajax/page'
+        },
+        rmenu: {
+            id: '#youmenu'
+        }
+    });
+
+    //修改密码
+    function zengSong(obj) {
+        var op = $(obj).parent().data('obj');
+        var tds = op.find('td');
+        if($.trim($(tds[1]).html()) == '') {
+            $(obj).parent().css('display','none');
+            return;
+        }
+        $(tds[5]).html('0');
+        $(tds[6]).html('0');
+        $(tds[7]).html('赠品');
+        updatePrice($(obj));
+        $(obj).parent().css('display','none');
+    }
+
+    function del(obj) {
+        var ude=layer.confirm('确定删除此商品吗?', function(){
+            var op=$(obj).parent().data("obj");
+            var tds = op.find('td');
+            for(var i=1;i<8;i++) {
+                $(tds[i]).html('');
+            }
+            layer.close(ude);
+
+        },'删除用户');
+    }
+
+</script>
+</body>
+</html>

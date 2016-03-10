@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/public/css/reset.css"/>
+</head>
+<body>
+<form class="m-form" id="form1">
+    <ul>
+        <li>客户姓名：<input id="username" name="username"></li>
+        <li>单位名称：<input type="text" id="company" name="company"></li>
+        <li>手&nbsp;机&nbsp;号：<input id="phone" name="phone"></li>
+        <li>固&nbsp;&nbsp;&nbsp;话：<input id="telphone" name="telphone"></li>
+        <li>所在地区：<input id="area" name="area"></li>
+        <li>常用物流：<input id="express" name="express"></li>
+        <li><input type="submit" value="提交"/> </li>
+    </ul>
+</form>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/public/js/witch.ui.validate.js"></script>
+<script>
+    $(function(){
+        $("#form1").witchValidate({
+            'fields':{
+                '#username':{
+                    'must':true,
+                    'minLength':3,
+                    'maxLength':12,
+                    // 'url':'/ajax/',
+                    focusMsg:"请输入用户名",
+                    errMsg:'用户名不能为空或用户名必须在3-12个字符之间'
+                },
+                '#phone':{
+                    'must':true,
+                    reg:'phone',
+                    focusMsg:"请输入您的手机号码",
+                    errMsg:'手机号码格式不合法'
+                },
+                '#telphone':{
+                    'must':true,
+                    'reg': /(\d{2,5}-\d{7,8}(-\d{1,})?)|(13\d{9})|(159\d{8})/,
+                    focusMsg:"请输入0371-xxxxxxxx的形式",
+                    errMsg:'格式不正确，请输入0371-xxxxxxxx的形式'
+                },
+                '#company':{
+                    'must':true,
+                    focusMsg:"请输入单位名称",
+                    errMsg:'请输入单位名称'
+                },
+                '#area':{
+                    'must':true,
+                    focusMsg:"请输入所在地",
+                    errMsg:'请输入所在地'
+                },
+                '#express':{
+                    'must': true,
+                    focusMsg:"请输入常用物流",
+                    errMsg:'请输入常用物流'
+                }
+            },
+            ajaxFun:{
+                url: '/setting/acustom',
+                success: function (msg) {
+                    if(msg.id) {
+                        var index = parent.layer.getFrameIndex(window.name);
+                        var dom=parent.$('#user'),dombody=parent.$('#user > tbody');
+                        var line=dom.data('line');
+                        var tr=$('<tr><td>'+line+'</td><td class="edit">'+$('#username').val()+'</td><td class="edit">'+$('#phone').val()+'</td><td class="edit">'+$('#telphone').val()+'</td><td class="edit">'+$('#company').val()+'</td><td class="edit">'+$('#area').val()+'</td><td></td></tr>');
+                        tr.data('id',msg.id);
+                        dombody.append(tr);
+                        dom.data('line',(line + 1));
+                        parent.table.addMenu();
+                        parent.table.editInput();
+                        parent.layer.close(index);
+                    }
+                },
+                error:function() {
+                    alert('网络错误请重试');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

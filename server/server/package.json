@@ -1,0 +1,22 @@
+{
+  "name": "WitchNode",
+  "version": "0.2.2",
+  "private": true,
+  "author": "左盐",
+  "E-mail": "huabinglan@163.com",
+  "description": "web site Tools",
+  "OS": "*inux and Windows",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "ejs": "*",
+    "xss": "*",
+    "async": "*",
+    "sqlite3": "*",
+    "objectid": "^3.1.0",
+    "knex":"*",
+    "bluebird": "*"
+  }
+}

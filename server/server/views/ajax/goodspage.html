@@ -1,0 +1,16 @@
+{"count":<%= count%>,"data":[
+<% rows.forEach(function(row){%>
+{
+    "id": "<%= row.id%>",
+    " <%= row.goodscode%>": "search",
+    "  <%= row.name%>": "edit",
+    "   <%= row.norms%>": "edit",
+    "    <%= row.unit%>": "edit",
+    "     <%= tools.accDiv(row.jinhuoprice,100)%>": "edit",
+    "       <%= tools.accDiv(row.dailiprice,100)%>": "edit",
+    "        <%= tools.accDiv(row.huiyuanprice,100)%>": "edit",
+    "         <%= tools.accDiv(row.lingshouprice,100)%>": "edit",
+    "          <%= row.number%>": "edit"
+},
+<%})%>
+{}]}

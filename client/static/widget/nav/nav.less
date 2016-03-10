@@ -1,0 +1,33 @@
+@import "../../less/variables.less";
+.navmenu{
+	width: 100%;
+	height: 33px;
+	background:#d3d3d3 url(bg.png?__sprite) repeat-x;
+
+	& > ul {
+		width: 1000px;
+		height: 33px;
+		clear: both;
+		margin: 0 auto;
+		line-height: 33px;
+		& > li {
+			width: 88px;
+			margin-right: 37px;
+			float: left;
+			text-align: center;
+			& > a{
+				color:#00393b;
+				width: 100%;
+				height: 33px;
+				display: inline-block;
+			}
+			& > a:hover{
+				background: url('hover.png?__sprite') no-repeat;
+			}
+			& > .choose {
+				background: url('choose.png?__sprite') no-repeat;
+			}
+
+		}
+	}
+}

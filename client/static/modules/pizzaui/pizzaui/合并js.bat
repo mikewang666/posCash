@@ -1,0 +1,1 @@
+copy pizza.ui.wordsTip.js+pizza.ui.validate.js+pizza.ui.tip4explain.js+pizza.ui.tip4detail.js+pizza.ui.store.js+pizza.ui.select.js+pizza.ui.placeholder.js+pizza.ui.memberInfo.js+pizza.ui.area.js+witch.ui.show.js+pizza.ui.tab.js+pizza.ui.datatable.js+pizz.ui.autoComplete.js+pizza.ui.datatable.order.js  /b  "../pizza.ui.js"

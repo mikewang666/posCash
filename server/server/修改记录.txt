@@ -1,0 +1,3 @@
+F:\NodeJs\posCash\server\static\views\ajax\goodspage.html
+F:\NodeJs\posCash\client\static\site\goods\goods.js
+F:\NodeJs\posCash\client\static\site\pos\pos.js

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="import" href="/widget/head/head.html?__inline">
+</head>
+
+<body>
+    <div class="mainiframe">
+        <div id="form1">
+            <ul>
+                <li>
+                    <input id="goodscode" type="text" name="goodscode" placeholder="请输入商品编码">
+                </li>
+                <li>
+                    <input type="text" type="text"  id="name" name="name" placeholder="请输入商品名称">
+                </li>
+                <li>
+                    <input id="norms" type="text" name="norms" placeholder="请输入商品规格">
+                </li>
+                <li>
+                    <input id="unit" type="text" name="unit" placeholder="请输入商品单位">
+                </li>
+                <li>
+                    <input id="jinhuoprice" type="text" name="jinhuoprice" placeholder="请输入进货价格">
+                </li>
+                <li>
+                    <input id="dailiprice" type="text" name="dailiprice" placeholder="请输入代理价格">
+                </li>
+                <li>
+                    <input id="huiyuanprice" type="text" name="huiyuanprice" placeholder="请输入会员价格">
+                </li>
+                <li>
+                    <input id="lingshouprice" type="text" name="lingshouprice" placeholder="请输入零售价格">
+                </li>
+                <li>
+                    <input id="number" type="text" name="number" placeholder="请输入商品库存数量">
+                </li>
+            </ul>
+            <div class="footbar">
+                <input type="submit" value="提交" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+    <link rel="import" href="/widget/footer/footer.html?__inline">
+    <script src="/site/goods/goods.js"></script>
+    <script>
+        goods.addGoods();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+@import "../../less/variables.less";
+@import "../../less/button.less";
+.mcren-tag {
+    width: 636px;
+    height: 118px;
+    border: @border;
+    border-radius: 10px;
+    clear: both;
+    & > div {
+        padding: 0 0 0 9px;
+        width: 100%;
+        height: 68px;
+        & > div {
+            float: left;
+            font-size: 16px;
+            width: 123px;
+            height: 100%;
+            position: relative;
+            margin-top: 14px;
+            & > i {
+                vertical-align: middle;
+            }
+            .icon-tags {
+                font-size: 30px;
+                margin-right: 3px;
+            }
+            .icon-question-sign {
+                cursor: pointer;
+                position: absolute;
+                top: 7px;
+                right: 0;
+                font-size: 20px;
+                color: @bgcolor-danger;
+                margin: -3px 0 0 3px;
+            }
+        }
+        & > ul {
+            float: left;
+            height: 100%;
+            width: 477px;
+            margin-left: 17px;
+            & > li {
+                width: 114px;
+                margin-top: 14px;
+                float: left;
+                & > input {
+                    height: 23px;
+                    border-color: @btn-primary-bgcolor;
+                    width: 114px;
+                }
+                & > a {
+                    cursor: pointer;
+                    margin-left: 5px;
+                    font-size: 17px;
+                    vertical-align: bottom;
+                    & > i {
+                        font-size: 20px;
+                    }
+                   
+                }
+            }
+        }
+    }
+    & > p {
+        background-color: @bgcolor-place;
+        clear: both;
+        width: 100%;
+        height: 34px;
+        line-height: 34px;
+        text-align: right;
+        font-size: 12px;
+        border-radius: 0 0 10px 10px;
+        border-top: 1px solid @border-color;
+        padding-right: 13px;
+        & > span{
+        	color:@bgcolor-danger;
+        	font-weight: 600;
+        }
+    }
+}

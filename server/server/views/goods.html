@@ -1,0 +1,156 @@
+<%- include /include/head.html %>
+ <div class="m-tabletitle">
+     <input id="input"> <button id="search">搜索</button> <button id="adduser">添加新商品</button>
+ </div>
+ <table id="user" class="m-table">
+
+
+ </table>
+<%- include /include/footermenu.html%>
+ <ul id="youmenu" class="m-rmenu" tabindex="1" >
+     <li  onclick="del(this);">删除</li>
+ </ul>
+<script src="/js/jquery-1.8.0.min_cd8b0bf.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/js/witch.ui.datatable_5142d72.js"></script>
+<script>
+    var table=new witchDataTable('#user',{
+        thead: [
+            {
+                name: '行号',
+                width: '30px'
+            },
+            {
+                name: '商品名称',
+                width: '200px',
+                edit: 'name',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '规格',
+                width: '200px',
+                edit: 'norms',
+                validate: {
+                    must:false
+                }
+            },
+            {
+                name: '单位',
+                width: '100px',
+                edit: 'unit',
+                validate: {
+                    must:false
+                }
+            },
+            {
+                name: '辅单位',
+                width: '100px',
+                edit: 'assist',
+                validate: {
+                    must:false
+                }
+            },
+            {
+                name: '进价',
+                width: '40px',
+                edit: 'price',
+                validate: {
+                    must: true
+                }
+            },
+            {
+                name: '预售价格',
+                width: '100px',
+                edit: 'sale',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '零售价格',
+                width: '100px',
+                edit: 'assistSale',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '库存',
+                width: '100px',
+                edit: 'number',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '库存(辅)',
+                width: '100px',
+                edit: 'assistNumber',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '单位转换',
+                width: '100px',
+                edit: 'change',
+                validate: {
+                    must:true
+                }
+            }
+        ],
+        data:{
+            url:'/setting/goods/page'
+        },
+        update:{
+          url: '/setting/goods/update'
+        },
+        search:{
+            id :'#search',
+            input: '#input'
+        },
+        add: {
+            id: '#adduser',
+            url:'/setting/goods/addgoods',
+            name: '添加新商品'
+        },
+        rmenu: {
+            id: '#youmenu'
+        }
+    });
+    //修改密码
+    function updatePwd(obj) {
+        $.layer({
+            type : 2,
+            shade : [0],
+            fix: false,
+            title : ["修改密码",true],
+            iframe : {src :'/setting/updatepassword?id='+$(obj).parent().data("id")},
+            area : ['600px' , '300px'],
+            close : function(index){
+                layer.close(index);
+            }
+        });
+    }
+
+    function del(obj) {
+        var ude=layer.confirm('确定删除该用户?', function(){
+            var id=$(obj).parent().data("id")
+            $.ajax({
+                type: 'post',
+                url: "/setting/del",
+                data: "id=" + id,
+                success: function(msg) {
+                    if(msg=="true") {
+                        $("#" + id).remove();
+                        layer.close(ude);
+                    }
+                }
+            });
+        },'删除用户');
+    }
+</script>
+</body>
+</html>

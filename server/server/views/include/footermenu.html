@@ -1,0 +1,18 @@
+<div class="m-nav-1" id="bottomnav">
+    <a href="/in" >进货</a>
+    <a href="/order" >订单</a>
+    <!--a href="/goods" >仓库</a-->
+    <a href="/setting">设置</a>
+</div>
+<script>
+    function setNav() {
+        var url = document.location.href;
+        if(url.indexOf('order') > -1) {
+            $("#bottomnav > a:eq(1)").addClass('a');
+        }
+        else if(url.indexOf('setting') > -1) {
+            $("#bottomnav > a:eq(2)").addClass('a');
+        }
+    }
+    setNav();
+</script>

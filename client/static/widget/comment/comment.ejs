@@ -1,0 +1,13 @@
+
+<% for(var i = 0; i < data.length; i++) { %>
+	<ul class="comment-ceil clearfix">
+	    <li class="li-1">
+	        <a href="<%= data[i].href %>"><img src="<%= data[i].avatar %>" alt=""><span class="span-1"><%= data[i].nickname %></span><span class="span-2"><%= data[i].province %>/<%= data[i].city %></span></a>
+	    </li>
+	    <li class="icon-link"></li>
+	    <li class="li-2"><%= data[i].content %></li>
+	    <li class="small"><%= data[i].time %></li>
+	    <li class="icon-remove"></li>
+	</ul>
+<% } %>
+

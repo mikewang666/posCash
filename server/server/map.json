@@ -1,0 +1,61 @@
+{
+    "res": {
+        "public/css/reset.css": {
+            "uri": "/css/reset_144833b.css",
+            "type": "css"
+        },
+        "public/js/common.js": {
+            "uri": "/js/common_171d3dd.js",
+            "type": "js"
+        },
+        "public/js/ejs.js": {
+            "uri": "/js/ejs_bf9e301.js",
+            "type": "js"
+        },
+        "public/js/jquery-1.8.0.min.js": {
+            "uri": "/js/jquery-1.8.0.min_cd8b0bf.js",
+            "type": "js"
+        },
+        "public/js/jquery.corner.js": {
+            "uri": "/js/jquery.corner_e57103e.js",
+            "type": "js"
+        },
+        "public/js/store+json2.min.js": {
+            "uri": "/js/store+json2.min_317976e.js",
+            "type": "js"
+        },
+        "public/js/witch.tool.js": {
+            "uri": "/js/witch.tool_c6367bd.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.autoComplete.js": {
+            "uri": "/js/witch.ui.autoComplete_11b92ee.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.datatable.js": {
+            "uri": "/js/witch.ui.datatable_5142d72.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.datatable.order.js": {
+            "uri": "/js/witch.ui.datatable.order_fb02ed3.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.js": {
+            "uri": "/js/witch.ui_ea44ab0.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.show.js": {
+            "uri": "/js/witch.ui.show_b226c4d.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.tab.js": {
+            "uri": "/js/witch.ui.tab_a9ebf47.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.validate.js": {
+            "uri": "/js/witch.ui.validate_1ab8359.js",
+            "type": "js"
+        }
+    },
+    "pkg": {}
+}

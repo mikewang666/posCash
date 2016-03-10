@@ -1,0 +1,95 @@
+<%- include /include/head.html %>
+ <div class="m-tabletitle">
+     <input id="input"> <button id="search">搜索</button> <button id="adduser">添加新用户</button>
+ </div>
+ <table id="user" class="m-table">
+
+
+ </table>
+<%- include /include/footermenu.html%>
+ <ul id="youmenu" class="m-rmenu" tabindex="1" >
+     <li onclick="updatePwd(this);">修改密码</li>
+     <li  onclick="del(this);">删除</li>
+ </ul>
+<script src="/js/jquery-1.8.0.min_cd8b0bf.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/js/witch.ui.datatable_5142d72.js"></script>
+<script src="/js/ejs_bf9e301.js"></script>
+<script>
+    var table=new witchDataTable('#user',{
+        thead: [
+            {
+                name: '行号',
+                width: '100px'
+            },
+            {
+                name: '职员姓名',
+                width: '100px',
+                edit: 'userName',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                 name: '手机号',
+                 width: '100px',
+                edit: 'phone',
+                 validate: {
+                     must: true,
+                     reg: 'phone'
+                 }
+            }
+        ],
+        data:{
+            url:'/userajax/page'
+        },
+        update:{
+            url: '/userajax/update'
+        },
+        search:{
+            id :'#search',
+            input: '#input'
+        },
+        add: {
+            id: '#adduser',
+            url:'/setting/adduser',
+            name: '添加用户'
+        },
+        rmenu: {
+            id: '#youmenu'
+        }
+    });
+    //修改密码
+    function updatePwd(obj) {
+        $.layer({
+            type : 2,
+            shade : [0],
+            fix: false,
+            title : ["修改密码",true],
+            iframe : {src :'/setting/updatepassword?id='+$(obj).parent().data("id")},
+            area : ['600px' , '300px'],
+            close : function(index){
+                layer.close(index);
+            }
+        });
+    }
+
+    function del(obj) {
+        var ude=layer.confirm('确定删除该用户?', function(){
+            var id=$(obj).parent().data("id")
+            $.ajax({
+                type: 'post',
+                url: "/setting/del",
+                data: "id=" + id,
+                success: function(msg) {
+                    if(msg=="true") {
+                        $("#" + id).remove();
+                        layer.close(ude);
+                    }
+                }
+            });
+        },'删除用户');
+    }
+</script>
+</body>
+</html>

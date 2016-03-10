@@ -1,0 +1,17 @@
+/.idea
+/server/server/node_modules
+/client/locales
+/client/node_modules
+/client/credits.html
+/client/d3dcompiler_47.dll
+/client/ffmpegsumo.dll
+/client/icudtl.dat
+/client/libEGL.dll
+/client/libGLESv2.dll
+/client/nw.exe
+/client/nw.pak
+/client/nwjc.exe
+/client/pdf.dll
+/client/views
+/client/public
+/client/site

@@ -1,0 +1,12 @@
+{"count":<%= count%>,"data":[
+<% rows.forEach(function(row){%>
+{
+    "id": "<%= row.id%>",
+    " <%= row.userName%>": "s",
+    "  <%= row.phone%>": "e",
+    "   <%= row.money%>": "e",
+    "    <%= row.score%>": "e",
+    "     <%= row.activetime%>": "e"
+},
+<%})%>
+{}]}

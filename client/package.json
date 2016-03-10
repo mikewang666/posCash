@@ -1,0 +1,21 @@
+{
+    "name": "posCash",
+    "main": "./views/login.html",
+    "window": {
+        "toolbar": true,
+        "width": 800,
+        "height": 500,
+        "frame": true,
+        "icon": "./public/img/posh.png",
+        "kiosk": false
+    },
+    "webkit": {
+        "plugin": true
+    },
+    "user-agent": "%name",
+    "dependencies": {
+        "ejs": "*",
+        "xss": "*",
+        "async": "*"
+    }
+}

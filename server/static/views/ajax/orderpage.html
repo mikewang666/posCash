@@ -1,0 +1,15 @@
+{"count":<%= count%>,"data":[
+<% rows.forEach(function(row){%>
+{
+    "id": "<%= row.id%>$<%= row.customid%>$<%= row.operatorId%>",
+    "<%= row.orderid%>": "",
+    "  <%= row.customName%>": "",
+    "   <%= tools.accDiv(row.money,100)%>": "",
+    "    <%= tools.accDiv(row.realMoney,100)%>": "",
+    "      <%= row.state%>": "",
+    "        <%= row.operaName%>": "",
+    "           <%= row.time%>": "",
+    "            <%= row.des%>": ""
+},
+<%})%>
+{}]}

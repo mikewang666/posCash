@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>pos收银</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="import" href="/widget/head/head.html?__inline">
+    <link rel="stylesheet" href="/site/pos/pos.css">
+</head>
+
+<body>
+    <link rel="import" href="/widget/header/header.html?__inline">
+    <div class="main">
+        <div class="tabletitle" style="height:150px;">
+            <ul class="">
+                <li>
+                    <span>手机号：</span>
+                    <div>
+                        <input id="phone" type="text" placeholder="请输入会员手机号并回车查询"/>
+                    </div>
+                    <input type="hidden" id="customid" value="0" tabindex="1"/>
+                </li>
+                <li>
+                    <span>会员姓名：</span>
+                    <div>
+                        <input id="customname" type="text" readonly="" value="" />
+                    </div>
+                </li>
+                <li>
+                    <span>余额：</span>
+                    <div>
+                        <input id="custommoney" type="text" value="0" readonly="" />
+                    </div>
+                </li>
+                <li>
+                    <span>积分：</span>
+                    <div>
+                        <input id="score" type="text" value="0" readonly="" />
+                    </div>
+                </li>
+                <li>
+                    <span>价位：</span>
+                    <div style="width:320px;">
+                        <label class="radiogroup">
+                            <input type="radio" id="text11" name="price" checked="checked" value="lingshouprice">
+                            <label for="text11"></label>零售价</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text21" name="price" value="huiyuanprice">
+                            <label for="text21"></label>会员价</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text31" name="price" value="dailiprice">
+                            <label for="text31"></label>代理价</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text41" name="price" value="jinhuoprice">
+                            <label for="text41"></label>进货价</label>
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <span>付款方式：</span>
+                    <div style="width:250px;">
+                        <label class="radiogroup">
+                            <input type="radio" id="text111" name="pay" checked="checked" value="cash">
+                            <label for="text111"></label>现金</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text112" name="pay" value="card">
+                            <label for="text112"></label>刷卡</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text211" name="pay" value="online">
+                            <label for="text211"></label>网转</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text311" name="pay" value="balance">
+                            <label for="text311"></label>余额</label>
+                    </div>
+                </li>
+                <li>
+                    <span>应收金额：</span>
+                    <div>
+                        <input id="money" type="text" readonly="" value="0" />
+                    </div>
+                </li>
+                <li>
+                    <span>实收金额：</span>
+                    <div>
+                        <input id="realmoney" type="text" style="color:red;font-weight:600;font-size:16px;" value="0" />
+                    </div>
+                </li>
+                <li>
+                    <span>改价备注：</span>
+                    <div style="width:350px;">
+                        <input id="des" type="text" style="width:350px;" value="" />
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <span>商品编号：</span>
+                    <div style="width:300px;">
+                        <input id="goodcode" type="text" placeholder="扫码枪扫描编码并添加" style="width:300px;" tabindex="1"/>
+                    </div>
+                </li>
+                <li>
+                    <button onclick="pos.printData(0);" class="btn btn-primary">提交订单并打印</button>
+                </li>
+            </ul>
+        </div>
+        <table id="user" class="table">
+
+        </table>
+    </div>
+    <link rel="import" href="/widget/footer/footer.html?__inline">
+    <script src="/site/pos/pos.js"></script>
+    <script>
+        pos.init();
+    </script>
+    <ul id="youmenu" class="tablerightmenu" tabindex="1">
+        <li onclick="pos.changeToSend(this);">转为赠品</li>
+        <li onclick="pos.changePriceByRightMenu(this,'huiyuanprice');">使用会员价</li>
+        <li onclick="pos.changePriceByRightMenu(this,'dailiprice');">使用代理价</li>
+        <li onclick="pos.changePriceByRightMenu(this,'lingshouprice');">使用零售价</li>
+        <li onclick="pos.delGoodState(this);">清除状态</li>
+    </ul>
+</body>
+
+</html>

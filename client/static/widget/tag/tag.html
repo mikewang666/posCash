@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="tag.css">
+<div class="mcren-tag">
+	<div>
+		<div>
+			<i class="icon-tags"></i>身份标签<i class="icon-question-sign" id="tag" placeholder="（1）你希望别人搜索什么样的词组的时候会搜索到您？<span>重要！</span><br/> 输入代表你身份、职业、爱好……相关标签词组。其他会<br/>员可以通过搜索<身份标签>找到你。<br/>（2）尽量多而准确的填写标签词组，其他会员更容易搜索到您。"></i>
+		</div>
+		<ul>
+			<li><input type="text" placeholder="输入"/></li>
+		</ul>
+	</div>
+	<p>共可输入<span>8</span>个标签&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单个标签字数：<span>1—5</span>个字</p>
+</div>
+<script type="text/javascript">
+    //mcTagOption为tag函数传的参数
+	var tag =  require('tag/tag');
+	var mcTag = new tag(typeof(mcTagOption) === 'undefined' ? {} : mcTagOption);
+	mcTag.init('<%= data.tag%>');
+	/*setInterval(function() {
+		console.log('tags=' + mcTag.getValues());
+	},1000);*/
+</script>

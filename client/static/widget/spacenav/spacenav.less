@@ -1,0 +1,108 @@
+@import "../../less/variables.less";
+@import "../../less/button.less";
+.spacenav{
+	background-color: @color;
+	width: 100%;
+	height: 56px;
+
+	& > div{
+		width: @width;
+		margin: 0 auto;
+		position: relative;
+		height: 56px;
+		& >.left{
+			color:#fff;
+			position: absolute;
+			bottom: 0;
+			background-color: @bgcolor-success;
+			width: 450px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			border-radius: 5px 5px 0 0;
+			border:1px solid #fff;
+			border-bottom: none; 
+			box-shadow: 0 1px 4px #bf4819 inset;
+		}
+		& >.spacenavright{
+			text-align: right;
+			right:0;
+			bottom: 2px;
+			position: absolute;
+			width: 500px;
+			& > a > .choose{
+				background-color: @btn-bgcolor-hover;
+				color:#fff;
+			}
+			& > a > span{
+				color:@bgcolor-hold;
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background-color: @bgcolor-hold-place;
+				font-size: 24px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 3px;
+				margin-left: 9px;
+			}
+			& > .space-nav-menu {
+				display: none;
+				position: absolute;
+				width: 342px;
+				height: 95px;
+				border:2px solid #000;
+				clear: both;
+				margin-top: 3px;
+				text-align: center;
+				& > div {
+					float:left;
+					background-color: #000;
+					height:100%;
+					width: 105px;
+					color:#fff;
+					font-size: 40px;
+					font-size: 30px;
+					p{
+						font-size: 16px;
+					}
+				}
+				& > ul {
+					float:left;
+					background-color: @border-detail-color;
+					width: 233px;
+					height: 100%;
+					& > li {
+						height: 45px;
+						line-height: 45px;
+						border-top: 1px solid #000;
+						a{
+							color:#fff;
+							display: inline-block;
+							width: 100%;
+							height: 100%;
+						}
+						a:hover{
+							background-color: @btn-bgcolor-hover;
+						}
+					}
+					& > li:first{
+						border:none;
+					}
+				}
+			}
+			& > .space-nav-mail,.space-nav-haibao{
+				& > div{
+					padding-top: 20px;
+				}
+			}
+			& > .space-nav-yuehui,.space-nav-card{
+				height: 141px;
+				& > div{
+					padding-top: 38px;
+				}
+			}
+		}
+
+	}
+}

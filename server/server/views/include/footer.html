@@ -1,0 +1,19 @@
+<script type="text/javascript" >
+        if ('<%=user_loginid %>' == 1) {
+            $(".usermenuchoose").css("display", "none");
+        }
+        $(document).ready(function(){
+            if(locaData.Get("loca")==null){
+                manageui.GetIndexMenu();
+            }
+            else{
+                manageui.TabMenu("tab",locaData.Get("loca"));
+            }
+        })
+        /*滚动条相关操作
+         document.getElementById("mainright").onscroll = function() {
+         alert("h");
+         }*/
+   </script>
+  </body>
+  </html>

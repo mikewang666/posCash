@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>multiPicUpload</title>
+	<meta name="description" content="" />
+	
+	<script type="text/javascript" src="http://swfs.sinaapp.com/swfobject.js"></script>
+	<script>
+		var swf;
+		var flashvars = {
+			js_handler:"jsHandler",
+			swfID:"pic_upload",
+			uploadAPI:"http://www.rich.com/widget/upload.php",
+			maxFileNum:5,
+			maxFileSize:5242880,
+			imgMaxWidth:200,
+			imgMaxHeight:200,
+			btnImage:"upload.png",
+			btnWidth:115,
+			btnHeight:36,
+		};
+		var params = {
+			menu: "false",
+			scale: "noScale",
+			allowFullscreen: "true",
+			allowScriptAccess: "always",
+			bgcolor: "",
+			wmode: "transparent" // can cause issues with FP settings & webcam
+		};
+		var attributes = {
+			id:"multiPicUpload"
+		};
+		swfobject.embedSWF(
+			"multiPicUpload.swf", 
+			"altContent", "100%", "100%", "10.0.0", 
+			"expressInstall.swf", 
+			flashvars, params, attributes,cb);
+
+		
+		function cb(e)
+		{
+			swf = e.ref;
+		}
+		var errors = [];
+
+		function jsHandler(data)
+		{
+			console.log(data);
+			var type = data.type;
+
+			if(type == "flashInit")
+			{
+				swf = document.getElementById("multiPicUpload");
+			}else if(type == "cancelSelect")
+			{
+				
+			}else if(type == "singleError")
+			{
+			}else if(type == "singleSuccess")
+			{
+			}else if(type == "singleSuccess")
+			{
+			}else if(type == "singleSuccess")
+			{
+			}else if(type == "singleSuccess")
+			{
+			}
+		}
+
+		function reupload()
+		{
+			if(errors.length > 0)
+			{
+				console.log("<<<<<<<<< :: " + errors[0]["error"]["fid"]);
+				swf.reuploadById((errors.shift())["error"]["fid"]);
+			}
+		}
+
+
+	</script>
+	<style>
+		html, body { height:100%; overflow:hidden; }
+		body { margin:0; }
+	</style>
+</head>
+<body>
+<div style="width:115px;height:36px;margin:50px auto;padding:10px;">
+	<input type="button" value="reupload" onclick="reupload();">
+</div>
+<div style="width:115px;height:36px;margin:50px auto;padding:9px;border:solid 1px #eee;">
+	<div id="altContent">
+		<h1>multiPicUpload</h1>
+		<p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
+	</div>
+</div>
+</body>
+</html>

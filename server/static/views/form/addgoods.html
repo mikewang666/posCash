@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/public/css/reset.css"/>
+</head>
+<body>
+<form class="m-form" id="form1">
+    <ul>
+        <li>商品名称：<input id="name" name="name"></li>
+        <li>规&nbsp;&nbsp;&nbsp;格：<input type="text" id="norms" name="norms"></li>
+        <li>单&nbsp;&nbsp;&nbsp;位：<input id="unit" name="unit"></li>
+        <li>辅助单位：<input id="assist" name="assist"></li>
+        <li>进&nbsp;&nbsp;&nbsp;价：<input id="price" name="price" value="0.0"></li>
+        <li>预售价格： <input id="sale" name="sale" value="0.0"></li>
+        <li>库&nbsp;&nbsp;&nbsp;存： <input id="number" name="number" value="0"></li>
+        <li>辅助单位库存：<input id="assistNumber" name="assistNumber" value="0"></li>
+        <li><input type="submit" value="提交"/> </li>
+    </ul>
+</form>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/public/js/witch.ui.validate.js"></script>
+<script>
+    $(function(){
+        $("#form1").witchValidate({
+            'fields':{
+                '#name':{
+                    'must':true,
+                    'minLength':3,
+                    'maxLength':12,
+                    // 'url':'/ajax/',
+                    focusMsg:"请输入商品名",
+                    errMsg:'请输入商品名'
+                },
+                '#norms':{
+                   'must':false,
+                    focusMsg:"请输入商品规格",
+                    errMsg:'请输入商品规格'
+                },
+                '#unit':{
+                    'must':true,
+                    focusMsg:"请输入商品单位",
+                    errMsg:'请输入商品单位'
+                },
+                '#assist':{
+                   'must':false,
+                    focusMsg:"请输入辅助单位名称",
+                    errMsg:'请输入辅助单位名称'
+                },
+                '#price':{
+                    'must':true,
+                    focusMsg:"请输入商品进价",
+                    errMsg:'请输入商品进价'
+                },
+                '#sale':{
+                    'must': true,
+                    focusMsg:"请输入商品预售价格",
+                    errMsg:'请输入商品预售价格'
+                },
+                '#number': {
+                    'must': true,
+                    focusMsg:"请输入现在库存",
+                    errMsg:'请输入现在库存'
+                },
+                '#assistNumber': {
+                    'must': true,
+                    focusMsg:"请输入现在库存",
+                    errMsg:'请输入现在库存'
+                }
+            },
+            ajaxFun:{
+                url: '/setting/goods/add',
+                success: function (msg) {
+                    if(msg.id) {
+                        var index = parent.layer.getFrameIndex(window.name);
+                        var dom=parent.$('#user'),dombody=parent.$('#user > tbody');
+                        var line=dom.data('line');
+                        var tr=$('<tr><td>'+line+'</td><td class="edit">'+$('#name').val()+'</td><td class="edit">'+$('#norms').val()+'</td><td class="edit">'+$('#unit').val()+'</td><td class="edit">'+$('#assist').val()+'</td><td class="edit">'+$('#price').val()+'</td><td class="edit">'+$('#sale').val()+'</td><td class="edit">'+$('#number').val()+'</td><td class="edit">'+$('#assistNumber').val()+'</td><td></td></tr>');
+                        tr.data('id',msg.id);
+                        dombody.append(tr);
+                        dom.data('line',(line + 1));
+                        parent.table.addMenu();
+                        parent.table.editInput();
+                        parent.layer.close(index);
+                    }
+                },
+                error:function() {
+                    alert('网络错误请重试');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

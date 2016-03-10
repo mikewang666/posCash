@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>AvatarUpload</title>
+	<meta name="description" content="" />
+	
+	<script src="js/swfobject.js"></script>
+	<script>
+		var flashvars = {
+			js_handler:"jsfun",
+			swfID:"avatarEdit",
+			picSize:"5242880",//允许最大的上传大小，5M
+			sourceAvatar:"http://ww1.sinaimg.cn/large/64a97dc7jw1e1xlbtnhhhj.jpg",//默认头像地址
+			avatarLabel:"头像预览，请注意是否清晰",//右侧头像预览区label
+			sourceLabel:"保存你的原图吧",//复选框 "是否保存原图"的文案
+			sourcePicAPI:"",//保存头像原图的接口地址
+			avatarAPI:"http://asv5.sinaapp.com/widget/upload.php",//保存头像的接口地址
+			avatarSize:"180,180|50,50|30,30",
+			avatarSizeLabel:"大尺寸|中尺寸|小尺寸"
+		};
+		var params = {
+			menu: "false",
+			scale: "noScale",
+			allowFullscreen: "true",
+			allowScriptAccess: "always",
+			bgcolor: "",
+			wmode: "transparent" // can cause issues with FP settings & webcam
+		};
+		var attributes = {
+			id:"AvatarUpload"
+		};
+		swfobject.embedSWF(
+			"avatarUpload.swf", 
+			"altContent", "100%", "100%", "10.0.0", 
+			"expressInstall.swf", 
+			flashvars, params, attributes);
+			
+		function jsfun(obj)
+		{
+			/*if(obj.type == "sourcePicSuccess") alert("原图上传成功");
+			if(obj.type == "sourcePicError") alert("原图上传失败");
+			if(obj.type == "avatarSuccess") alert("头像上传成功");
+			if(obj.type == "avatarError") alert("头像上传失败");
+			//if(obj.type == "init") alert("flash初始化完成");
+			if(obj.type == "cancel") alert("取消编辑头像");
+			if(obj.type == "FileSelectCancel") alert("取消选取本机图片");*/	
+
+			switch(obj.type) {
+				case "sourcePicSuccess":
+				  alert("原图上传成功");
+				  break;
+				case "sourcePicError":
+				  alert("原图上传失败");
+				  break;
+				case "avatarSuccess":
+				  alert("头像上传成功");
+				  break;
+				case "cancel":
+				  alert("取消编辑头像");
+				  break;
+				case "FileSelectCancel":
+				   //alert("取消选取本机图片");
+				  break;
+			}
+			console.log(obj);
+		}
+	</script>
+	<style>
+		html, body { height:100%;}
+		body { margin:0; }
+	</style>
+</head>
+<body>
+	<div style="width:750px;height:550px;margin:40px auto 0; padding:10px;border:solid 1px #EFEFEF;">
+		<div id="altContent">
+			<h1>AvatarUpload</h1>
+			<p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{"count":<%= count%>,"data":[
+<% rows.forEach(function(row){%>
+      {
+         "id": "<%= row.id%>",
+         "<%= row.userName%>": "search edit",
+         "<%= row.phone%>": "edit"
+      },
+<%})%>
+{}]}

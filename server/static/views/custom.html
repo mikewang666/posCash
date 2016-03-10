@@ -1,0 +1,126 @@
+<%- include /include/head.html %>
+ <div class="m-tabletitle">
+     <input id="input"> <button id="search">搜索</button> <button id="adduser">添加新客户</button>
+ </div>
+ <table id="user" class="m-table">
+
+
+ </table>
+<%- include /include/footermenu.html%>
+ <ul id="youmenu" class="m-rmenu" tabindex="1" >
+     <li  onclick="del(this);">删除</li>
+ </ul>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/public/js/witch.ui.datatable.js"></script>
+<script>
+    var table=new witchDataTable('#user',{
+        thead: [
+            {
+                name: '行号',
+                width: '30px'
+            },
+            {
+                name: '联系人',
+                width: '100px',
+                edit: 'user',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '手机',
+                width: '100px',
+                edit: 'phone',
+                validate: {
+                    must:false,
+                    reg: 'phone'
+                }
+            },
+            {
+                name: '固话',
+                width: '100px',
+                edit: 'telphone',
+                validate: {
+                    must:false,
+                    'reg': /(\d{2,5}-\d{7,8}(-\d{1,})?)|(13\d{9})|(159\d{8})/
+                }
+            },
+            {
+                name: '单位名称',
+                width: '500px',
+                edit: 'company',
+                validate: {
+                    must: true
+                }
+            },
+            {
+                name: '所在地区',
+                width: '100px',
+                edit: 'area',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: "物流",
+                width: '100px',
+                edit: 'express',
+                validate: {
+                    must:true
+                }
+            }
+        ],
+        data:{
+            url:'/customajax/page'
+        },
+        update:{
+          url: '/customajax/update'
+        },
+        search:{
+            id :'#search',
+            input: '#input'
+        },
+        add: {
+            id: '#adduser',
+            url:'/setting/addcustom',
+            name: '添加用户'
+        },
+        rmenu: {
+            id: '#youmenu'
+        }
+    });
+    //修改密码
+    function updatePwd(obj) {
+        $.layer({
+            type : 2,
+            shade : [0],
+            fix: false,
+            title : ["修改密码",true],
+            iframe : {src :'/setting/updatepassword?id='+$(obj).parent().data("id")},
+            area : ['600px' , '300px'],
+            close : function(index){
+                layer.close(index);
+            }
+        });
+    }
+
+    function del(obj) {
+        var ude=layer.confirm('确定删除该用户?', function(){
+            var id=$(obj).parent().data("id")
+            $.ajax({
+                type: 'post',
+                url: "/setting/del",
+                data: "id=" + id,
+                success: function(msg) {
+                    if(msg=="true") {
+                        $("#" + id).remove();
+                        layer.close(ude);
+                    }
+                }
+            });
+        },'删除用户');
+    }
+</script>
+</body>
+</html>

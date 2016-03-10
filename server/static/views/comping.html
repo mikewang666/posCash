@@ -1,0 +1,95 @@
+<%- include /include/head.html %>
+ <div class="m-tabletitle">
+     <!--input id="input"> <button id="search">搜索</button> <button id="adduser">添加新订单</button-->
+ </div>
+ <table id="user" class="m-table">
+
+
+ </table>
+<%- include /include/footermenu.html%>
+ <ul id="youmenu" class="m-rmenu" tabindex="1" >
+     <li  onclick="edit(this);">编辑</li>
+     <li  onclick="order(this);">已发货</li>
+ </ul>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/plug/layer/layer.min.js"></script>
+<script src="/public/js/witch.ui.datatable.js"></script>
+<script>
+    var table=new witchDataTable('#user',{
+        thead: [
+            {
+                name: '行号',
+                edit:'',
+                width: '30px'
+            },
+            {
+                name: '收货人',
+                edit:'uid',
+                width: '100px'
+            },
+            {
+                name: '手机',
+                width: '100px'
+            },
+            {
+                name: '金额',
+                width: '80px'
+            },
+            {
+                name: '收货地',
+                width: '100px'
+            },
+            {
+                name: "物流",
+                width: '80px'
+            },
+            {
+                name: "下单时间",
+                width: '150px'
+            },
+            {
+                name: "备注",
+                width: '500px'
+            }
+        ],
+        data:{
+            url:'/order/comping/page?state=0'
+        },
+        update:{
+          url: '/customajax/update'
+        },
+        search:{
+            id :'#search',
+            input: '#input'
+        },
+        rmenu: {
+            id: '#youmenu'
+        }
+    });
+
+    function edit(obj) {
+        document.location.href = '/order/editorder?id='+$(obj).parent().data("id");
+    }
+    /**
+     * 更新订单状态为已发货。该状态将更新数据库的库存
+     * @param obj
+     */
+    function order(obj) {
+        var id = $(obj).parent().data("id");
+        var op = $(obj).parent().data('obj');
+        $.ajax({
+            type: 'post',
+            url: '/order/comping/order',
+            data:'id=' + id +'&state= 1',
+            success: function(msg) {
+                if(msg == 'true') {
+                    layer.msg('已经入库', 1, -1);
+                    op.css('background-color','#0FA6D8');
+                }
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

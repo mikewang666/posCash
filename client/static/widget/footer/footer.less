@@ -1,0 +1,46 @@
+@import "../../less/variables.less";
+
+.footer{
+	width: 1000px;
+	height: 222px;
+	margin: 138px auto 10px;
+	border:9px solid @bgcolor-place;
+	border-radius: 5px;
+	padding: 46px 41px;
+	clear: both;
+	& > .left{
+		float:left;
+		width: 342px;
+		height: 110px;
+		& > img,span{
+			vertical-align: middle;
+		}
+		& > span{
+			margin-left: 7px;
+			font-size: 106px;
+			font-family: 'Impact';
+			color:@bgcolor-place;
+		}
+	}
+	& > .right{
+		float: left;
+		height: 110px;
+		width: 407px;
+		color:fadeout(@color,40%);
+		& > a{
+			margin: 0 10px;
+		}
+		& > div{
+			border-top: 1px dashed  #000;
+			margin-top: 17px;
+			padding-top: 17px;
+			& > a,label{
+				display: inline-block;
+				margin:0 16px; 
+			}
+			& > a:first-child {
+				margin-left:0;
+			}
+		}
+	}
+}

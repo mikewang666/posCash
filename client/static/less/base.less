@@ -1,0 +1,145 @@
+@import "variables.less";
+
+
+//base style
+.clearfix:after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: "\200B";
+}
+
+//解释说明卡片，蓝色边框
+.tip-detail {
+	position: relative;
+	display: none;
+	line-height: 1.5em;
+	padding: 10px;
+	background-color: @bgcolor;
+	.box-shadow();
+	.border-radius();
+	border:5px solid @border-detail-color;
+	i {
+		position: absolute;
+		bottom: -15px;
+		left: 10px;
+		width: 0;
+		height: 0;
+		border: 5px solid transparent;
+		border-top-color: @border-detail-color;
+		border-left-color: @border-detail-color;
+		content: '\200B';
+	}
+	span{
+		color: @bgcolor-danger;
+	}
+}
+
+//会员个人信息
+.member-14300018 {
+	position: relative;
+	display: none;
+	width: 310px;
+	height: 120px;
+	line-height: 20px;
+	color: #fff;
+	font-size: 12px;
+	padding-top: 5px;
+	padding-left: 8px;
+	background-color: #2375b6;
+	.border-radius();
+	.box-shadow();
+	.span-1 {
+		font-size: 16px;
+	}
+	i {
+		position: absolute;
+		left: 14px;
+		width: 0;
+		height: 0;
+		border: 5px solid transparent;
+		content: '\200B';
+	}
+	.arrow-1234 {
+		bottom: -10px;
+		border-top-color: #2375b6;
+		border-left-color: #2375b6;
+	}
+	.arrow-4321 {
+		top: -10px;
+		border-bottom-color: #2375b6;
+		border-left-color: #2375b6;
+	}
+
+	label {
+		display: inline-block;
+		width: 100%;
+		height: 28px;
+		text-indent: 25px;
+		line-height: 36px;
+		background: url('/img/label.png?__sprite') no-repeat;
+	}
+	em {
+		font-style: normal;
+		margin-left: 15px;
+		margin-right: 15px;
+		vertical-align: 0%;
+	}
+}
+
+//网页占位符
+.hold-space {
+	width: 100%;
+	height: 146px;
+	text-align: center;
+	border:2px solid @bgcolor-hold;
+	background-color: @bgcolor-hold-place;
+	.title {
+		font-size: 20px;
+		line-height: 102px;
+		height:102px;
+	}
+	.des {
+		line-height: 44px;
+		height:44px;
+		color: #fff;
+		background-color: @bgcolor-hold;
+	}
+}
+
+
+//翻页按钮样式
+.turnpage-hud {
+    background-color: @btn-bgcolor;
+    text-align: right;
+    .btn {
+        width: 90px;
+        border: 0;
+        border-left: 1px solid #fff;
+        border-radius: 0;
+    }
+}
+
+.turnpage-std {
+    text-align: right;
+    i,
+    em {
+        font-style: normal;
+        color: #308cbb;
+    }
+    i {
+        line-height: 34px;
+        padding: 0 10px;
+        cursor: pointer;
+    }
+    em {
+        font-family: 宋体;
+        vertical-align: 16%;
+    }
+    .choice {
+        color: red;
+    }
+    .marginleft {
+        margin-left: 3px;
+    }
+}

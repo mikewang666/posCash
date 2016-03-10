@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>pos收银</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="import" href="/widget/head/head.html?__inline">
+    <link rel="stylesheet" href="/site/order/order.css">
+</head>
+
+<body>
+    <link rel="import" href="/widget/header/header.html?__inline">
+    <div class="main">
+        <div class="tabletitle">
+            <input id="input" placeholder="搜索用户名" type="text">
+            <button id="adduser" class="btn btn-primary">搜索</button>
+        </div>
+        <table id="user" class="table">
+
+
+        </table>
+    </div>
+    <link rel="import" href="/widget/footer/footer.html?__inline">
+    <script src="/site/order/order.js"></script>
+    <script>
+        order.init();
+    </script>
+    <ul id="youmenu" class="tablerightmenu" tabindex="1">
+        <li onclick="order.updatePwd(this);">查看明细</li>
+    </ul>
+</body>
+
+</html>
